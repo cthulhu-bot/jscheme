@@ -1,11 +1,11 @@
 {
-  "name": "js-sandbox",
+  "name": "jscheme",
   "version": "1.0.0",
   "description": "",
-  "main": "core.js",
+  "main": "src/core.js",
   "scripts": {
       "test": "jest",
-      "dev": "node core.js"
+      "dev": "node src/core.js"
   },
   "keywords": [],
   "author": "",
