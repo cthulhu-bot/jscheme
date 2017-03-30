@@ -13,22 +13,43 @@ const Left = x =>
           inspect: () => `Left(${x})`,
         });
 
+const bool = x =>
+        ({
+          type: 'bool',
+          value: x,
+          chain: f => f,
+          map: f => f,
+          fold: f => f,
+          inspect: f => f,
+        });
+
 const num = x =>
         ({
           type: 'num',
           value: x,
-          chain:
-          map:
-          fold:
-          inspect:
+          chain: f => f,
+          map: f => f,
+          fold: f => f,
+          inspect: f => f,
         });
  
-const s-expr = x =>
+const sExpr = x =>
         ({
-          type: 's-expr',
+          type: 'sExpr',
           value: x,
-          chain:
-          map:
-          fold:
-          inspect:
+          chain: f => f,
+          map: f => f,
+          fold: f => f,
+          inspect: f => f,
         });
+
+const ast = x =>
+        ({
+          type: 'prog',
+          prog: [x],
+          chain: f => f,
+          map: f => f,
+          fold: f => f,
+          inspect: f => f,
+        });
+
