@@ -72,7 +72,7 @@ const astNode = (left, right) => {
     }
   return sExprToAstNode({
                           type: 'Literal',
-                          value: '',
+                          value: 'emptyNode',
                           left: left,
                           right: r,
                           });
@@ -82,7 +82,7 @@ const ast = sExpr => {
   const right = sExpr.args;
   const left = {type: sExpr.type, value: sExpr.func};
   const funcNode = astNode(left, right);
-    console.log('[funcNode] ', funcNode);
+    console.log('[funcNode] \n', funcNode);
     return funcNode;
 };
 
