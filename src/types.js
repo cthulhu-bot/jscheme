@@ -34,6 +34,8 @@ const num = x =>
         });
  
 const sExpr = (func, args) => {
+    const arithmatic = ['+', '-', '*', '/'];
+    const bool = ['true', 'false'];
         return {
             type: 'sExpr',
 	    func: func,
