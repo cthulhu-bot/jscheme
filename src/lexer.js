@@ -1,4 +1,5 @@
 import * as types from './types';
+import * as codegen from 'escodegen';
 
 const tokenizer = (rawTextInput) => {
     let current = null;
@@ -44,7 +45,9 @@ const tokenizer = (rawTextInput) => {
 	const sExp = types.sExpr(tokens[0], tokens.slice(1,tokens.length));
 	console.log(sExp);
 	const ast = types.ast(sExp);
-	console.log('[ast] ', ast);
+      console.log('[ast] ', ast);
+//    const astNode = types.sExpr->astNode(sExpr);
+    console.log('[codegen] ', codegen.generate(ast));
 	return ast;
     };
     return buildSExpr(rawTextInput);

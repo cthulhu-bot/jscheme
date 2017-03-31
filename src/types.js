@@ -38,8 +38,10 @@ const sExpr = (func, args) => {
     const bool = ['true', 'false'];
         return {
             type: 'sExpr',
-	    func: func,
-	    args: args,
+	      func: {type: 'BinaryExpression',
+                 operator: func,
+                },
+	      args: args.map(arg => ({type: 'Literal', value: parseInt(arg)})),
             chain: f => f,
             map: f => sExpr(f(x)),
             fold: f => f(x),
@@ -57,21 +59,29 @@ const rExpr = x =>
 	  inspect: f => f,
       });
 
+const sExprToAstNode = (sExprNode) => {
+  return sExprNode;
+};
+
 const astNode = (left, right) => {
     let r = right;
     if (typeof right === 'object' && r.length > 0) {
-	r = astNode(right[0], right.slice(1, right.length));
+	  r = astNode(right[0], right.slice(1, right.length));
     } else if (r.length === 0) {
-	r = null;
+	  r = null;
     }
-    return {
-	left: left,
-	right: r,
-    };
+  return sExprToAstNode({
+                          type: 'Literal',
+                          value: '',
+                          left: left,
+                          right: r,
+                          });
 };
 
 const ast = sExpr => {
-    const funcNode = astNode(sExpr.func, sExpr.args);
+  const right = sExpr.args;
+  const left = {type: sExpr.type, value: sExpr.func};
+  const funcNode = astNode(left, right);
     console.log('[funcNode] ', funcNode);
     return funcNode;
 };
